@@ -1,0 +1,21 @@
+<!document html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            그림판 만들어보기
+        </title>
+        <link href="./assets/images/title-icon.png" rel="shortcut icon" type="image/x-icon">
+        <link type="text/css" rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <div>
+            <label for="slider">선 굵기</label><input type="range" min="1" max="100" value="10" id="slider" onchange="lineWidthReSizeForSlider()">
+            <button type="button" onclick="lineWidthReSize('+')" >+1</button>
+            <button type="button" onclick="lineWidthReSize('-')">-1</button>
+            <div id="lindeWidth">10</div>
+        </div>
+    <script type="text/javascript" src="js/canvas.js"></script>
+    </body>
+</html>
