@@ -11,11 +11,36 @@
     <body>
         <canvas id="canvas" width="500" height="500"></canvas>
         <div>
-            <label for="slider">선 굵기</label><input type="range" min="1" max="100" value="10" id="slider" onchange="lineWidthReSizeForSlider()">
+            <label for="brushSizeSlider">선 굵기</label><input type="range" min="1" max="100" value="10" id="brushSizeSlider" oninput="lineWidthReSizeForSlider()">
+            <label for="opacitySlider">불투명도</label><input type="range" min="0.0" max="1.0" step="0.1" value="1" id="opacitySlider" oninput="opacitySetForSlider()">
             <button type="button" onclick="lineWidthReSize('+')" >+1</button>
             <button type="button" onclick="lineWidthReSize('-')">-1</button>
             <div id="lindeWidth">10</div>
+            <div id="opacity">1</div>
         </div>
+        <div>
+            <p>브러쉬 모양</p>
+            <button type="button" name="brushType" onclick="brushTypeChange('line')"> / </button>
+            <button type="button" name="brushType" onclick="brushTypeChange('circle')"> O </button>
+            <button type="button" name="brushType" onclick="brushTypeChange('square')">☐</button>
+            <button type="button" name="brushType" onclick="brushTypeChange('painting')">페인팅</button>
+            <button type="button" name="brushType" onclick="brushTypeChange('eraser')">지우개</button>
+            <button type="button" name="reset" onclick="canvasReset()">초기화</button>
+        </div>
+        <div>
+            <p>브러쉬 색상</p>
+            <label>
+                <input type="color" id="colorPicker" oninput="colorPicker()" >
+            </label>
+            <button type="button" name="brushColor" onclick="randomColor()">무작위 색상</button>
+            <div>
+                <p>최근 사용 색상</p>
+                <div id="colorPalette">
+
+                </div>
+            </div>
+        </div>
+        <a href="" download="myPainting.png">다운로드</a>
     <script type="text/javascript" src="js/canvas.js"></script>
     </body>
 </html>
