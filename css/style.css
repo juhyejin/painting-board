@@ -1,6 +1,58 @@
-html{
-    text-align: center;
+:root{
+    --border-color : #6b9cff;
+    --background-color : #b8cfff;
+    --focus-background-color : #959dff
+}
+
+html body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+body{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-family: 'Spoqa Han Sans', serif;
+}
+body > div {
+    align-self: center;
+}
+.brushTool{
+    padding-right: 19px;
 }
 canvas{
     border: 1px black solid;
+}
+button{
+    min-width: 50px;
+    min-height: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid;
+    background: white;
+}
+button:active{
+    background: #b8cfff;
+}
+#randomBrushColor{
+    position: relative;
+    bottom: 10px;
+}
+a{
+    width: 50px;
+    height: 100px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    border:1px solid;
+    text-decoration: none;
+    color: black;
+}
+a:active{
+    background:  #b8cfff;
+}
+#colorPalette{
+    display: flex;
+    margin-bottom: 10px;
 }

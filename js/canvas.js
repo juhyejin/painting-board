@@ -43,28 +43,16 @@ canvas.addEventListener('mousedown', () => isDraw = true)
 canvas.addEventListener('mouseup', () => isDraw = false)
 canvas.addEventListener('mousemove', event => draw(event.offsetX, event.offsetY))
 
-function lineWidthReSize(buttonType){
-    if(buttonType === '+') lineWidth++ ;
-    else{
-        if(lineWidth === 1){
-            alert('1이하로 줄일수 없습니다.')
-        }else{
-            lineWidth--
-        }
-    }
-    document.getElementById('lindeWidth').innerText = String(lineWidth)
-}
-
 function lineWidthReSizeForSlider(){
     let sliderValue = document.getElementById('brushSizeSlider')
     lineWidth = sliderValue.value;
-    document.getElementById('lindeWidth').innerText = String(lineWidth)
+    document.getElementById('brushSizeSliderValue').innerText = String(lineWidth)
 }
 
 function opacitySetForSlider(){
     let sliderValue = document.getElementById('opacitySlider')
     globalAlpha = sliderValue.value;
-    document.getElementById('opacity').innerText = String(globalAlpha)
+    document.getElementById('opacitySliderValue').innerText = String(globalAlpha)
 }
 
 function brushTypeChange(brushTypeData){
@@ -92,20 +80,27 @@ function stackColor(colorData){
     colorPalette= colorPalette.slice(-5)
     addElement.innerHTML = ''
     for(let i = 0; i < colorPalette.length; i++){
-        let bTag = document.createElement('b')
-        bTag.innerText = colorPalette[i]
-        bTag.style.color = colorPalette[i]
-        bTag.addEventListener('click', () => stackColorCLick(bTag.style.color))
-        addElement.appendChild(bTag)
+        let pastBrushColor = document.createElement('div')
+        pastBrushColor.textContent = ' '
+        pastBrushColor.style.color = colorPalette[i]
+        pastBrushColor.style.background = colorPalette[i]
+        pastBrushColor.style.width = '20px'
+        pastBrushColor.style.height = '20px'
+        pastBrushColor.style.margin = '2px'
+        pastBrushColor.style.borderRadius = '8px'
+        pastBrushColor.addEventListener('click', () => stackColorCLick(pastBrushColor.style.background))
+        addElement.appendChild(pastBrushColor)
     }
 }
 
 function stackColorCLick(colorData){
-   let rgb = colorData.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,'0'))
+    let rgb = colorData.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,'0'))
     colorInput.value = "#" + rgb.join( "" );
     brushColor =  "#" + rgb.join( "" );
 }
 
-document.querySelector('a').addEventListener('click', event =>
-    event.target.href = canvas.toDataURL()
+document.getElementById('aEvent').addEventListener('click', event =>{
+    console.log(event)
+    event.target.href = canvas.toDataURL()}
 );
+
