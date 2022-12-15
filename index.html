@@ -19,26 +19,31 @@
             <article>
                 <section>
                     <h4>선 굵기</h4>
-                    <input type="range" min="1" max="100" value="10" id="brushSizeSlider" >
+                    <input type="range" min="1" max="100" value="10" id="brushSizeSlider" oninput="lineWidthReSizeForSlider()">
                     <label for="brushSizeSlider" id="brushSizeSliderValue">10</label>
                 </section>
+                <section>
+                    <h4>불투명도</h4>
+                    <input type="range" min="0.0" max="1.0" step="0.1" value="1" id="opacitySlider" oninput="opacitySetForSlider()">
+                    <label for="opacitySlider" id="opacitySliderValue">1</label>
+                </section>
             </article>
-            <div id="brushTypeSection">
+            <div>
                 <h4>브러쉬 모양</h4>
-                <button type="button" name="brushType" id="lineBrush"> / </button>
-                <button type="button" name="brushType" id="circleBrush"> O </button>
-                <button type="button" name="brushType" id="squareBrush">☐</button>
-                <button type="button" name="brushType" id="paintBrush">페인팅</button>
-                <button type="button" name="brushType" id="eraserBrush">지우개</button>
-                <button type="button" name="reset" id="boardReset">초기화</button>
+                <button type="button" name="brushType" onclick="brushTypeChange('line')"> / </button>
+                <button type="button" name="brushType" onclick="brushTypeChange('circle')"> O </button>
+                <button type="button" name="brushType" onclick="brushTypeChange('square')">☐</button>
+                <button type="button" name="brushType" onclick="brushTypeChange('painting')">페인팅</button>
+                <button type="button" name="brushType" onclick="brushTypeChange('eraser')">지우개</button>
+                <button type="button" name="reset" onclick="canvasReset()">초기화</button>
             </div>
             <div>
                 <h4>브러쉬 색상</h4>
                 <div>
                     <label>
-                        <input type="color" id="colorPicker" >
+                        <input type="color" id="colorPicker" oninput="colorPicker()" >
                     </label>
-                    <button id="randomBrushColor" type="button" name="brushColor">무작위 색상</button>
+                    <button id="randomBrushColor" type="button" name="brushColor" onclick="randomColor()">무작위 색상</button>
                 </div>
 
                 <div>
@@ -48,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <a href="" download="myPainting.png" id="download">다운로드</a>
+            <a href="" download="myPainting.png" id="aEvent">다운로드</a>
         </div>
         <script type="text/javascript" src="js/canvas.js"></script>
     </body>
