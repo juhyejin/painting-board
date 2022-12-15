@@ -1,106 +1,116 @@
-let canvas = document.getElementById('canvas');
-let brush = canvas.getContext("2d");
-let colorInput = document.getElementById('colorPicker')
-let addElement = document.getElementById('colorPalette')
-let pastMouseX , pastMouseY = 0
-let isDraw = false
-let lineWidth = 10
-let brushType = 'line'
-let brushColor = colorInput.value
-let colorPalette = []
-let globalAlpha = 1
+const canvas = document.getElementById('canvas')
+const brush = canvas.getContext("2d");
 
-function draw(mouseX, mouseY) {
-    if (isDraw){
-            brush.beginPath();
-            brush.strokeStyle = brushColor;
-            brush.fillStyle = brushColor;
-            brush.globalAlpha = globalAlpha
-            if(brushType === 'line'){
-                brush.lineWidth = lineWidth;
-                // brush.lineJoin = 'round'
-                brush.moveTo(pastMouseX, pastMouseY);
-                brush.lineTo(mouseX, mouseY);
-                brush.stroke();
-            }else if(brushType === 'circle'){
-                brush.arc(mouseX, mouseY, lineWidth/2, 0, Math.PI*2);
+//color
+const colorInput = document.getElementById('colorPicker')
+const colorPaletteForm = document.getElementById('colorPalette')
+//brush-size
+const brushSizeInput = document.querySelector('#brushSizeSlider')
+
+//brush
+const brushTypeDiv = document.querySelector('div #brushTypeSection')
+const lineBrush = brushTypeDiv.querySelector('#lineBrush')
+const circleBrush = brushTypeDiv.querySelector('#circleBrush')
+const squareBrush = brushTypeDiv.querySelector('#squareBrush')
+const eraserBrush = brushTypeDiv.querySelector('#eraserBrush')
+const paintBrush = brushTypeDiv.querySelector('#paintBrush')
+const boardReset = brushTypeDiv.querySelector('#boardReset')
+const randomBrushColor = document.querySelector('#randomBrushColor')
+
+//download
+const download = document.querySelector('a')
+
+let brushType = "line"
+let isDraw = false
+let colorPalette = []
+
+function draw(event) {
+    let mousePointX = event.offsetX
+    let mousePointY = event.offsetY
+    let BRUSH_COLOR = colorInput.value
+    let brushSize = brushSizeInput.value
+    if (isDraw) {
+        brush.beginPath();
+        brush.strokeStyle = BRUSH_COLOR;
+        brush.fillStyle = BRUSH_COLOR;
+        brush.lineWidth = brushSize;
+        switch (brushType) {
+            case "circle" :
+                brush.arc(mousePointX, mousePointY, brushSize / 2, 0, Math.PI * 2);
                 brush.closePath();
                 brush.fill();
-            }else if(brushType === 'eraser'){
-                brush.clearRect(mouseX-lineWidth/2,mouseY-lineWidth/2,lineWidth,lineWidth)
-            }else if(brushType === 'square'){
-                brush.fillRect(mouseX-lineWidth/2,mouseY-lineWidth/2, lineWidth, lineWidth)
-            }
-            else{
-                brush.fillRect(0,0, canvas.width, canvas.height)
-            }
+                break;
+            case "square" :
+                brush.fillRect(mousePointX - brushSize / 2, mousePointY - brushSize / 2, brushSize, brushSize);
+                break;
+            case "eraser" :
+                brush.clearRect(mousePointX - brushSize/2,mousePointY - brushSize/2, brushSize, brushSize);
+                break;
+            case "paint":
+                brush.fillRect(0,0, canvas.width, canvas.height);
+                break;
+            default :
+                brush.moveTo(mousePointX + event.movementX, mousePointY + event.movementY);
+                brush.lineTo(mousePointX, mousePointY);
+                brush.stroke();
+        }
     }
-    pastMouseX = mouseX;
-    pastMouseY = mouseY;
 }
 
-canvas.addEventListener('mousedown', () => isDraw = true)
-canvas.addEventListener('mouseup', () => isDraw = false)
-canvas.addEventListener('mousemove', event => draw(event.offsetX, event.offsetY))
-
-function lineWidthReSizeForSlider(){
-    let sliderValue = document.getElementById('brushSizeSlider')
-    lineWidth = sliderValue.value;
-    document.getElementById('brushSizeSliderValue').innerText = String(lineWidth)
+function stackColorClick(event){
+    let rgb = event.target.style.color
+    rgb = rgb.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16)).join( "" );
+    colorInput.value = "#" + rgb;
 }
 
-function opacitySetForSlider(){
-    let sliderValue = document.getElementById('opacitySlider')
-    globalAlpha = sliderValue.value;
-    document.getElementById('opacitySliderValue').innerText = String(globalAlpha)
+function colorStack(){
+    colorPaletteForm.innerHTML = ''
+    colorPalette.push(colorInput.value)
+    colorPalette = colorPalette.slice(-5)
+    for(let i = 0; i < colorPalette.length; i++){
+        let stackColor = document.createElement('div')
+        stackColor.classList.add('colorStack')
+        stackColor.style.color = colorPalette[i]
+        stackColor.style.background = colorPalette[i]
+        stackColor.addEventListener('click', stackColorClick)
+        colorPaletteForm.append(stackColor)
+    }
 }
-
-function brushTypeChange(brushTypeData){
-    brushType = brushTypeData
-}
-
-function canvasReset(){
+function reset(){
     brush.clearRect(0,0, canvas.width, canvas.height)
 }
 
+function brushSizeChange(event){
+    let brushSizeInputValue =  event.target.value
+    const brushSizeLabel = document.querySelector('#brushSizeSliderValue')
+    brushSizeLabel.innerText = brushSizeInputValue
+}
+
 function randomColor(){
-    brushColor = '#' + Math.round(Math.random() * 0xffffff).toString(16)
-    colorInput.value = brushColor
-    stackColor(brushColor)
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    let rgb = `${r},${g},${b}`
+    const randomNumber = Math.floor(Math.random() * 0xf).toString(16)
+    rgb = rgb.split(',').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,randomNumber)).join('')
+    colorInput.value = "#" + rgb;
+    colorStack()
 }
 
-function colorPicker(){
-    brushColor = colorInput.value
-}
+canvas.addEventListener('mousedown', (event) => {
+    isDraw = true
+    draw(event)
+})
 
-document.getElementById('colorPicker').addEventListener('change', () => stackColor(colorInput.value))
-
-function stackColor(colorData){
-    colorPalette.push(colorData)
-    colorPalette= colorPalette.slice(-5)
-    addElement.innerHTML = ''
-    for(let i = 0; i < colorPalette.length; i++){
-        let pastBrushColor = document.createElement('div')
-        pastBrushColor.textContent = ' '
-        pastBrushColor.style.color = colorPalette[i]
-        pastBrushColor.style.background = colorPalette[i]
-        pastBrushColor.style.width = '20px'
-        pastBrushColor.style.height = '20px'
-        pastBrushColor.style.margin = '2px'
-        pastBrushColor.style.borderRadius = '8px'
-        pastBrushColor.addEventListener('click', () => stackColorCLick(pastBrushColor.style.background))
-        addElement.appendChild(pastBrushColor)
-    }
-}
-
-function stackColorCLick(colorData){
-    let rgb = colorData.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,'0'))
-    colorInput.value = "#" + rgb.join( "" );
-    brushColor =  "#" + rgb.join( "" );
-}
-
-document.getElementById('aEvent').addEventListener('click', event =>{
-    console.log(event)
-    event.target.href = canvas.toDataURL()}
-);
-
+canvas.addEventListener('mouseup', () => isDraw = false)
+canvas.addEventListener('mousemove', draw)
+lineBrush.addEventListener('click', () => brushType = "line")
+circleBrush.addEventListener('click', () => brushType = "circle")
+squareBrush.addEventListener('click',() => brushType = "square")
+eraserBrush.addEventListener('click', () => brushType = "eraser")
+paintBrush.addEventListener('click',() => brushType = "paint")
+boardReset.addEventListener('click', reset)
+brushSizeInput.addEventListener('input', brushSizeChange )
+randomBrushColor.addEventListener('click',randomColor)
+colorInput.addEventListener('change',colorStack)
+download.addEventListener('click', event => event.target.href = canvas.toDataURL());
