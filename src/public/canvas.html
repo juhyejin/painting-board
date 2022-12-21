@@ -1,0 +1,92 @@
+<!document html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            그림판
+        </title>
+        <!--css-->
+        <link href="assets/images/title-icon.png" rel="shortcut icon" type="image/x-icon">
+        <link type="text/css" rel="stylesheet" href="/css/fontFamily.css">
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+        <link type="text/css" rel="stylesheet" href="/css/inputStyle.css">
+    </head>
+    <body>
+        <div id="connectionSection">
+            <h3><strong>함께그리</strong>에 오신걸 환영합니다</h3>
+            <form id="userInfo">
+                <label>
+                    <input type="text" placeholder="닉네임" id="nickname" required>
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" id="saveNicknameCheck">
+                    다음에도 입력한 닉네임을 사용하시겠습니까?
+                </label>
+                <br>
+                닉네임 없이도 들어갈 수 있습니다.
+            </form>
+            <div id="welcome">
+
+            </div>
+            <form id="chattingRoomForm">
+                <label>
+                    <input type="text" placeholder="채팅방" id="room" required>
+                </label>
+                <button type="submit" >방생성/방찾기</button>
+
+            </form>
+        </div>
+        <div id='canvasSection' class="hidden">
+            <div>
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+            <div id="chatting">
+                <ul>
+                </ul>
+                <form id ='message'>
+                    <label>
+                        <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
+                    </label>
+                    <button type="submit">보내기</button>
+                </form>
+            </div>
+            <div class="brushTool">
+                <article>
+                    <section>
+                        <h4>선 굵기</h4>
+                        <input type="range" min="1" max="100" value="10" id="brushSizeSlider" >
+                        <label for="brushSizeSlider" id="brushSizeSliderValue">10</label>
+                    </section>
+                </article>
+                <div id="brushTypeSection">
+                    <h4>브러쉬 모양</h4>
+                    <button type="button" name="brushType" id="lineBrush"> / </button>
+                    <button type="button" name="brushType" id="circleBrush"> O </button>
+                    <button type="button" name="brushType" id="squareBrush">☐</button>
+                    <button type="button" name="brushType" id="paintBrush">페인팅</button>
+                    <button type="button" name="brushType" id="eraserBrush">지우개</button>
+                    <button type="button" name="reset" id="boardReset">초기화</button>
+                </div>
+                <div>
+                    <h4>브러쉬 색상</h4>
+                    <div>
+                        <label>
+                            <input type="color" id="colorPicker" >
+                        </label>
+                        <button id="randomBrushColor" type="button" name="brushColor">무작위 색상</button>
+                    </div>
+                    <div>
+                        <h4>최근 사용 색상</h4>
+                        <div id="colorPalette">
+                        </div>
+                    </div>
+                </div>
+                <a href="" download="myPainting.png" id="download">다운로드</a>
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <script type="text/javascript" src="/js/canvas.js"></script>
+    </body>
+</html>

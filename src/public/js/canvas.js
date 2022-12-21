@@ -1,6 +1,5 @@
 const canvas = document.getElementById('canvas')
 const brush = canvas.getContext("2d");
-
 //color
 const colorInput = document.getElementById('colorPicker')
 const colorPaletteForm = document.getElementById('colorPalette')
