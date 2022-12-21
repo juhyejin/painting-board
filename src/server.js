@@ -5,6 +5,9 @@ const httpServer = http.createServer(app);
 const PORT = 3000;
 const {Server} = require('socket.io');
 const wsServer = new Server(httpServer)
+const EventEmitter = require('events');
+const newEvent = new EventEmitter();
+
 
 app.use(express.static(__dirname +'/public'));
 app.get('/',(_,res) => {
@@ -34,6 +37,7 @@ function countRoom(roomName) {
 
 wsServer.on("connection", (socket) => {
     wsServer.sockets.emit("room_change", publicRooms());
+    newEvent.on('test', () => console.log('hi'))
     socket["nickname"] = "Anon";
     socket.onAny((event) => {
         console.log(`Socket Event: ${event}`);
@@ -55,6 +59,10 @@ wsServer.on("connection", (socket) => {
     socket.on("disconnect", () => {
         wsServer.sockets.emit("room_change", publicRooms());
     });
+    socket.on('draw_mouse',(roomName, done)=>{
+        console.log(roomName);
+        socket.to(roomName).emit('otherDraw',done)
+    })
 });
 
 

@@ -17,7 +17,26 @@ body{
     justify-content: center;
     font-family: 'Spoqa Han Sans', serif;
     overflow-y: scroll;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 body > div {
     align-self: center;
 }
@@ -65,4 +84,38 @@ a:active{
     height : 20px;
     margin : 2px;
     border-radius : 8px;
+}
+
+.title{
+    font-family: 'KOTRAHOPE';
+    font-size: 4rem;
+    background: linear-gradient(to right top, #9c7eff, #ffc8c3);
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px #fff
+}
+.title strong{
+    font-size:5rem;
+    background: linear-gradient(to right top, #c8b4ff, #ffb1ae);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+input[type='text']{
+    width: 500px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: white;
+}
+
+button{
+    padding: 12px;
+}
+button:hover{
+    background: darkgrey;
+    border:2px white solid;
+    color: white;
 }
