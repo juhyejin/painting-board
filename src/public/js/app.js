@@ -4,29 +4,43 @@ const connectionSection = document.querySelector('#connectionSection')
 const userInfoForm = document.querySelector('#userInfo')
 const chattingRoomForm = document.querySelector('#chattingRoomForm')
 const messageForm = document.querySelector('#message')
+const welcome = document.querySelector('#welcome');
+const checkboxForSaveNickName =  userInfoForm.querySelector('input[type="checkbox"]');
 const socket = io();
 
 const NICK_NAME = 'nickName'
 let roomName;
 
-function userNick(Nickname){
-    const h2ForWelcome = document.createElement('h2');
-    const welcome = document.querySelector('#welcome')
-    userInfoForm.hidden = true
-    h2ForWelcome.innerText = `환영합니다! ${Nickname}`;
-    welcome.appendChild(h2ForWelcome)
+function nicknameChange(){
+    welcome.innerHTML = '';
+    userInfoForm.hidden = false;
+    checkboxForSaveNickName.checked = false;
+    localStorage.clear();
+}
+
+function welcomeUser(Nickname){
+    const h2ForWelcome = document.createElement('b');
+    h2ForWelcome.innerText = `닉네임 : ${Nickname}`;
+    h2ForWelcome.style.fontSize = '1.5rem';
+    const btn = document.createElement('button');
+    btn.type='button';
+    btn.innerText = '변경';
+    btn.addEventListener('click', nicknameChange);
+    welcome.appendChild(h2ForWelcome);
+    welcome.appendChild(btn);
     socket.emit(NICK_NAME, Nickname);
+    userInfoForm.hidden = true;
 }
 
 function submitNickName(event){
     event.preventDefault();
     const inputForNickname = userInfoForm.querySelector('input')
-    const checkboxForSaveNickName = userInfoForm.querySelector('#saveNicknameCheck')
     const USER_NICK_NAME = inputForNickname.value
     if(checkboxForSaveNickName.checked){
         localStorage.setItem(NICK_NAME, USER_NICK_NAME)
     }
-    userNick(USER_NICK_NAME)
+    welcomeUser(USER_NICK_NAME)
+    inputForNickname.value = ''
 }
 
 function showRoom(){
@@ -47,7 +61,7 @@ function enterRoom(event){
 }
 
 function addMessage(msg){
-    const ul = document.querySelector('ul');
+    const ul = canvasSection.querySelector('ul');
     const li = document.createElement('li');
     li.innerText = msg;
     ul.appendChild(li);
@@ -63,7 +77,7 @@ function sendMessage(event){
 }
 
 if(localStorage.getItem(NICK_NAME)){
-    userNick(localStorage.getItem(NICK_NAME))
+    welcomeUser(localStorage.getItem(NICK_NAME))
 }
 socket.on("welcome", (user) => {
     addMessage(`${user} 입장했습니다!`);

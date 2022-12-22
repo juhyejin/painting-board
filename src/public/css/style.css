@@ -4,15 +4,19 @@
     --focus-background-color : #959dff
 }
 
-.hidden{
-    display: none;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: black !important;
 }
 
 html body{
     padding: 0;
     margin: 0;
-
 }
+
 body{
     justify-content: center;
     font-family: 'Spoqa Han Sans', serif;
@@ -21,6 +25,7 @@ body{
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
 }
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -32,35 +37,53 @@ body{
         background-position: 0% 50%;
     }
 }
+
 .container{
     display: flex;
     justify-content: center;
 }
 
-body > div {
-    align-self: center;
-}
-.brushTool{
-    padding-right: 19px;
-}
-canvas{
-    border: 1px black solid;
-}
+/*.brushTool{*/
+/*    padding-right: 19px;*/
+/*}*/
+/*canvas{*/
+/*    border: 1px black solid;*/
+/*    background: white;*/
+/*}*/
 button{
-    min-width: 50px;
-    min-height: 30px;
-    padding: 5px;
+    padding: 10px;
     border-radius: 8px;
     border: 1px solid;
     background: white;
 }
-button:active{
-    background: #b8cfff;
+button:hover{
+    background: lightseagreen;
+    color: white;
+}
+form{
+    margin: 0px;
+}
+.card{
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: fit-content;
+    margin: auto;
+    box-shadow: 0px 0 7px 0px #7b7b7b;
+}
+#chattingRoomForm{
+    margin: 15px 0px;
+}
+
+#welcome{
+    display: flex;
 }
 #randomBrushColor{
     position: relative;
     bottom: 10px;
 }
+
+
 a{
     width: 50px;
     height: 100px;
@@ -100,6 +123,9 @@ a:active{
     color: transparent;
     -webkit-background-clip: text;
 }
+
+
+
 input[type='text']{
     width: 500px;
     height: 32px;
@@ -108,14 +134,90 @@ input[type='text']{
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
+    background-color: #d3d3d3;
+}
+input[type='text']:focus{
+    width: 500px;
+    height: 32px;
+    font-size: 15px;
+    border: 1px solid lightseagreen;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
     background-color: white;
 }
-
-button{
-    padding: 12px;
+input[type='text']:valid{
+    width: 500px;
+    height: 32px;
+    font-size: 15px;
+    border: 1px solid lightseagreen;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background: white !important;
 }
-button:hover{
-    background: darkgrey;
-    border:2px white solid;
-    color: white;
+
+/*input[type='checkbox']{*/
+/*    display: none;*/
+/*}*/
+/*input[type='checkbox'] + label{*/
+/*    font-size: 0.8rem;*/
+/*}*/
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + label {
+    width: fit-content;
+    font-size: 0.7rem;
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input[type="checkbox"]:hover + label:hover {
+    color:lightseagreen;
+}
+input[type="checkbox"]:hover + label:before {
+    background: lightseagreen;
+    box-shadow: inset 0px 0px 0px 1px #f7f2f2;
+}
+/* input[type="checkbox"] + label:last-child {*/
+/*    margin-bottom: 0;*/
+/*}*/
+input[type="checkbox"] + label:before {
+    content: "";
+    display: block;
+    width: 1.1em;
+    height: 1.1em;
+    border: 1px solid #343a3f;
+    border-radius: 0.2em;
+    position: absolute;
+    left: 0;
+    top: 1.5px;
+    -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+    transition: all 0.2s, background 0.2s ease-in-out;
+    background: #f3f3f3;
+}
+
+input[type="checkbox"]:checked + label:before {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.2em;
+    border: 1px solid #fff;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    background: lightseagreen;
+    box-shadow: 0 0 0 1px #000;
+}
+input[type="checkbox"]:checked + label {
+    color: lightseagreen;
+}
+
+
+.hidden{
+    display: none;
 }

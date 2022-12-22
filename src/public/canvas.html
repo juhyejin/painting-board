@@ -15,41 +15,39 @@
         <div class="container">
             <div id="connectionSection">
                 <h3 class="title"><strong>함께그리</strong>에 오신걸 환영합니다</h3>
-                <form id="userInfo">
-                    <label>
-                        <input type="text" placeholder="닉네임" id="nickname" required>
-                    </label>
-                    <button type="submit" >완료</button>
-                    <br>
-                    <label>
-                        <input type="checkbox" id="saveNicknameCheck">
+                <div class="card">
 
-                        다음에도 입력한 닉네임을 사용하시겠습니까?
-                    </label>
-                    <br>
-                    닉네임 없이도 들어갈 수 있습니다.
-                </form>
-                <div id="welcome">
+                    <form id="userInfo">
+                        <label>
+                            <input type="text" placeholder="닉네임" id="nickname" required>
+                        </label>
+                        <button type="submit" >완료</button>
+                        <br>
+                            <input type="checkbox" id="saveNicknameCheck">
+                        <label for="saveNicknameCheck">
+                            다음에도 입력한 닉네임을 사용하시겠습니까?
+                            <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
+                        </label>
+                    </form>
+                    <div id="welcome"></div>
+                    <form id="chattingRoomForm">
+                        <input type="text" placeholder="채팅방" id="room" required autocomplete="off">
 
+                        <button type="submit" >찾기</button>
+                        <br>
+                        <label for="room">
+                            방이 존재하지 않으면 방을 생성합니다.
+                        </label>
+                    </form>
+                    <ul></ul>
                 </div>
-                <form id="chattingRoomForm">
-                    <label>
-                        <input type="text" placeholder="채팅방" id="room" required>
-                    </label>
-                    <button type="submit" >방생성/방찾기</button>
-
-                </form>
-                <ul>
-
-                </ul>
             </div>
             <div id='canvasSection' class="hidden">
                 <div>
                     <canvas id="canvas" width="500" height="500"></canvas>
                 </div>
                 <div id="chatting">
-                    <ul>
-                    </ul>
+                    <ul></ul>
                     <form id ='message'>
                         <label>
                             <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
