@@ -58,7 +58,7 @@ function draw(event) {
 
 function stackColorClick(event){
     let rgb = event.target.style.color
-    rgb = rgb.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16)).join( "" );
+    rgb = rgb.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,'0')).join( "" );
     colorInput.value = "#" + rgb;
 }
 
@@ -92,6 +92,7 @@ function randomColor(){
     let rgb = `${r},${g},${b}`
     const randomNumber = Math.floor(Math.random() * 0xf).toString(16)
     rgb = rgb.split(',').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,randomNumber)).join('')
+    console.log(rgb)
     colorInput.value = "#" + rgb;
     colorStack()
 }

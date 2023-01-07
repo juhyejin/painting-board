@@ -10,7 +10,7 @@ const wsServer = new Server(httpServer)
 
 app.use(express.static(__dirname +'/public'));
 app.get('/',(_,res) => {
-    res.sendFile(__dirname + '/public/canvas.html')
+    res.sendFile(__dirname + '/public/index.html')
 })
 app.get('/*',(_,res) => res.redirect('/'))
 
@@ -36,7 +36,7 @@ function countRoom(roomName) {
 
 wsServer.on("connection", (socket) => {
     wsServer.sockets.emit("room_change", publicRooms());
-    socket["nickname"] = "Anon";
+    socket["nickname"] = "guest";
     socket.onAny((event) => {
         console.log(`Socket Event: ${event}`);
     });

@@ -38,18 +38,6 @@ body{
     }
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-}
-
-/*.brushTool{*/
-/*    padding-right: 19px;*/
-/*}*/
-/*canvas{*/
-/*    border: 1px black solid;*/
-/*    background: white;*/
-/*}*/
 button{
     padding: 10px;
     border-radius: 8px;
@@ -110,6 +98,7 @@ a:active{
 }
 
 .title{
+    text-align: center;
     font-family: 'KOTRAHOPE';
     font-size: 4rem;
     background: linear-gradient(to right top, #9c7eff, #ffc8c3);
@@ -217,7 +206,43 @@ input[type="checkbox"]:checked + label {
     color: lightseagreen;
 }
 
-
+#chattingRoomForm label{
+    margin-left: 10px;
+    font-size: 0.7rem;
+}
+.card h3{
+    margin: 5px 0px;
+}
+.card ul{
+    margin: 0px;
+    padding-inline-start: 30px;
+}
+.card li{
+    list-style-type: circle;
+}
 .hidden{
     display: none;
+}
+
+.brushTool{
+    padding-right: 19px;
+}
+canvas{
+    border: 1px black solid;
+    background: white;
+}
+
+.canvasSection{
+    display: flex;
+    background: white;
+    padding:10px;
+    margin: 20px;
+    border:2px double black;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.canvasSection ul{
+    height: 435px;
+    overflow-y: scroll;
 }

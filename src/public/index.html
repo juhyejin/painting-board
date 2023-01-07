@@ -16,7 +16,6 @@
             <div id="connectionSection">
                 <h3 class="title"><strong>함께그리</strong>에 오신걸 환영합니다</h3>
                 <div class="card">
-
                     <form id="userInfo">
                         <label>
                             <input type="text" placeholder="닉네임" id="nickname" required>
@@ -39,22 +38,16 @@
                             방이 존재하지 않으면 방을 생성합니다.
                         </label>
                     </form>
-                    <ul></ul>
+                    <h3>방 목록</h3>
+                    <ul>
+                    </ul>
                 </div>
             </div>
             <div id='canvasSection' class="hidden">
                 <div>
                     <canvas id="canvas" width="500" height="500"></canvas>
                 </div>
-                <div id="chatting">
-                    <ul></ul>
-                    <form id ='message'>
-                        <label>
-                            <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
-                        </label>
-                        <button type="submit">보내기</button>
-                    </form>
-                </div>
+
                 <div class="brushTool">
                     <article>
                         <section>
@@ -87,6 +80,16 @@
                         </div>
                     </div>
                     <a href="" download="myPainting.png" id="download">다운로드</a>
+
+                </div>
+                <div id="chatting">
+                    <ul></ul>
+                    <form id ='message'>
+                        <label>
+                            <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
+                        </label>
+                        <button type="submit">보내기</button>
+                    </form>
                 </div>
             </div>
         </div>

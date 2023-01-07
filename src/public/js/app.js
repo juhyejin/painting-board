@@ -46,9 +46,12 @@ function submitNickName(event){
 function showRoom(){
     canvasSection.classList.remove('hidden')
     connectionSection.classList.add('hidden')
+    canvasSection.classList.add('canvasSection')
     const roomNameTitle = document.createElement('h3');
     roomNameTitle.innerText = `방이름 : ${roomName}`;
-    document.querySelector('body').prepend(roomNameTitle)
+    const body = document.querySelector('body')
+    body.prepend(roomNameTitle)
+
 }
 
 function enterRoom(event){
@@ -65,6 +68,7 @@ function addMessage(msg){
     const li = document.createElement('li');
     li.innerText = msg;
     ul.appendChild(li);
+    ul.scroll(0, ul.scrollHeight)
 }
 function sendMessage(event){
     event.preventDefault();
@@ -86,6 +90,7 @@ socket.on("welcome", (user) => {
 socket.on("bye", (left) => {
     addMessage(`${left} 방을 떠났습니다.`);
 })
+
 socket.on("new_message", addMessage);
 
 socket.on('room_change', (rooms) => {
