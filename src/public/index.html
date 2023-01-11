@@ -51,19 +51,43 @@
                 <div class="brushTool">
                     <article>
                         <section>
-                            <h4>선 굵기</h4>
+                            <h4>브러쉬 크기</h4>
                             <input type="range" min="1" max="100" value="10" id="brushSizeSlider" >
                             <label for="brushSizeSlider" id="brushSizeSliderValue">10</label>
                         </section>
                     </article>
                     <div id="brushTypeSection">
                         <h4>브러쉬 모양</h4>
-                        <button type="button" name="brushType" id="lineBrush"> / </button>
-                        <button type="button" name="brushType" id="circleBrush"> O </button>
-                        <button type="button" name="brushType" id="squareBrush">☐</button>
-                        <button type="button" name="brushType" id="paintBrush">페인팅</button>
-                        <button type="button" name="brushType" id="eraserBrush">지우개</button>
-                        <button type="button" name="reset" id="boardReset">초기화</button>
+                        <label>
+                            <input type="radio" name="brushType" value="/">
+                            /
+                        </label>
+                        <label>
+                            <input type="radio" name="brushType" value="O">
+                            O
+                        </label>
+                        <label>
+                            <input type="radio" name="brushType" value="ㅁ">
+                            ㅁ
+                        </label>
+                        <label>
+                            <input type="radio" name="brushType" value="지우개">
+                            지우개
+                        </label>
+                        <label>
+                            <input type="radio" name="brushType" value="페인팅">
+                            페인팅
+                        </label>
+                        <label>
+                            <input type="radio" name="brushType" value="초기화">
+                            초기화
+                        </label>
+                        <button type="button" name="brushType" class="brushBtn" id="lineBrush"> / </button>
+                        <button type="button" name="brushType" class="brushBtn" id="circleBrush"> O </button>
+                        <button type="button" name="brushType" class="brushBtn" id="squareBrush">☐</button>
+                        <button type="button" name="brushType" class="brushBtn" id="paintBrush">페인팅</button>
+                        <button type="button" name="brushType"  class="brushBtn"id="eraserBrush">지우개</button>
+                        <button type="button" name="reset" class="brushBtn" id="boardReset">초기화</button>
                     </div>
                     <div>
                         <h4>브러쉬 색상</h4>

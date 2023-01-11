@@ -245,4 +245,9 @@ canvas{
 .canvasSection ul{
     height: 435px;
     overflow-y: scroll;
+    border: 1px solid;
+    padding-left: 10px;
+}
+.canvasSection ul li {
+    list-style: none;
 }
