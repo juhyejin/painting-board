@@ -1,5 +1,5 @@
 const canvasSection = document.querySelector('#canvasSection')
-const connectionSection = document.querySelector('#connectionSection')
+const connectionSection = document.querySelector('#connection-section')
 
 const userInfoForm = document.querySelector('#userInfo')
 const chattingRoomForm = document.querySelector('#chattingRoomForm')
@@ -19,13 +19,14 @@ function nicknameChange(){
 }
 
 function welcomeUser(Nickname){
+
     const h2ForWelcome = document.createElement('b');
-    h2ForWelcome.innerText = `닉네임 : ${Nickname}`;
-    h2ForWelcome.style.fontSize = '1.5rem';
+    h2ForWelcome.innerText = `${Nickname}`;
     const btn = document.createElement('button');
     btn.type='button';
     btn.innerText = '변경';
     btn.addEventListener('click', nicknameChange);
+    welcome.classList.remove('hidden');
     welcome.appendChild(h2ForWelcome);
     welcome.appendChild(btn);
     socket.emit(NICK_NAME, Nickname);
@@ -150,7 +151,6 @@ let paintingData = {
 }
 
 function draw(paintingData) {
-    console.log(paintingData)
     let mousePointX = paintingData.mousePointX
     let mousePointY = paintingData.mousePointY
     let BRUSH_COLOR = paintingData.BRUSH_COLOR

@@ -1,0 +1,66 @@
+canvas{
+    border: 1px black solid;
+    background: white;
+}
+
+#chattingRoomForm{
+    margin: 1rem 0;
+}
+#randomBrushColor{
+    position: relative;
+    bottom: 0.0625rem;
+}
+#colorPalette{
+    display: flex;
+    margin-bottom: 0.0625rem;
+}
+.colorStack{
+    content: ' ';
+    width : 1.25rem;
+    height : 1.25rem;
+    margin : 1.25rem;
+    border-radius : 0.5rem;
+}
+
+
+#chattingRoomForm label{
+    margin-left: 0.625rem;
+    font-size: 0.7rem;
+}
+
+.brushTool{
+    padding-right: 1.25rem;
+}
+.canvasSection{
+    display: flex;
+    background: white;
+    padding:0.625rem;
+    margin: 1.25rem;
+    border: 2px double black;
+    border-radius: 0.625rem;
+    justify-content: space-between;
+}
+
+.canvasSection ul{
+    height: 25rem;
+    overflow-y: scroll;
+    border: 1px solid;
+    padding-left: 0.625rem;
+}
+.canvasSection ul li {
+    list-style: none;
+}
+
+/*a{*/
+/*    width: 50px;*/
+/*    height: 100px;*/
+/*    padding: 5px;*/
+/*    margin: 5px;*/
+/*    border-radius: 8px;*/
+/*    border:1px solid;*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*}*/
+/*a:active{*/
+/*    background:  #b8cfff;*/
+/*}*/

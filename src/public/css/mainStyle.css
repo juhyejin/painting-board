@@ -1,0 +1,126 @@
+html,body{
+    height: 100%;
+}
+body{
+    justify-content: center;
+    font-family: 'Spoqa Han Sans', serif;
+    overflow: scroll;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+button{
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid;
+    background: white;
+}
+button:hover{
+    background: lightseagreen;
+    color: white;
+}
+/*connection Section*/
+#connection-section{
+    width: 100%;
+    margin: 0 auto;
+}
+.title-style{
+    text-align: center;
+    font-family: 'KOTRAHOPE';
+    font-size: 4rem;
+    background: linear-gradient(to right top, #9c7eff, #ffc8c3);
+    -webkit-background-clip: text;
+    color: transparent;
+    mix-blend-mode: hard-light;
+    -webkit-text-stroke: 3px #fff;
+    padding: 3.75rem 0;
+}
+.title-style strong{
+    font-size: 6rem;
+    background: linear-gradient(to right top, #c8b4ff, #ffb1ae);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+.mobile-main-title{
+    display: none;
+}
+#connection-section > .main-content{
+    background: white;
+    border-radius: 0.625rem;
+    padding: 1.25rem;
+    width: fit-content;
+    margin: auto;
+    box-shadow: 0 0 0.5rem 0 #7b7b7b;
+}
+#connection-section > .main-content h3{
+    margin: 0.375rem 0;
+}
+#connection-section > .main-content ul{
+    margin: 0;
+    padding-inline-start: 1.875rem;
+}
+#connection-section > .main-content li{
+    list-style-type: circle;
+}
+/*connection Section end*/
+
+#welcome{
+    display: flex;
+    align-items: center;
+}
+
+.font-size-bold{
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#welcome b{
+    padding:0 0.625rem;
+    color: lightseagreen;
+}
+.hidden{
+    display: none !important;
+}
+
+.room-list-title{
+    padding: 1rem 0
+}
+.room-list li{
+    padding: 0.5rem 0;
+}
+
+@media (max-width: 850px) {
+    html{
+        font-size: 14px;
+    }
+    .title-style{
+        font-size: 4rem;
+    }
+    .title-style strong{
+        font-size: 5rem;
+    }
+}
+@media (max-width: 600px) {
+    html{
+        font-size: 14px;
+    }
+    .main-title{
+        display: none;
+    }
+    .mobile-main-title{
+        display: block;
+    }
+}
