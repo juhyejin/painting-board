@@ -30,7 +30,7 @@ const socketMain = function (socket, wsServer){
         wsServer.sockets.emit("room_change", publicRooms());
     });
     socket.on("new_message", (msg, room, done) => {
-        socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`);
+        socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`,'other-msg');
         done();
     });
     socket.on("nickName", (nickname) => (socket["nickname"] = nickname));
@@ -42,6 +42,9 @@ const socketMain = function (socket, wsServer){
     });
     socket.on('draw', (room,mouseX, mouseY,brushType) => {
         socket.to(room).emit('otherDraw',mouseX,mouseY,brushType)
+    })
+    socket.on('board-reset',(room)=>{
+        socket.to(room).emit('other-board-reset','다른 사용자가 보드를 초기화 했습니다.')
     })
 }
 

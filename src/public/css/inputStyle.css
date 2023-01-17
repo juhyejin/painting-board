@@ -28,12 +28,12 @@ input[type=range]::-webkit-slider-thumb {
     border-radius: 0.25rem;
     background: #ffffff;
     cursor: pointer;
-    margin-top: 0.25rem; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    margin-top: -0.2rem; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
     box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d; /* Add cool effects to your sliders! */
 }
 /*firefox*/
 input[type=range]::-moz-range-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
     border: 1px solid lightseagreen;
     height: 1rem;
     width: 1rem;
@@ -64,7 +64,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: lightseagreen;
+    background: #3f99c5;
 }
 
 input[type=range]::-moz-range-track {
@@ -77,7 +77,7 @@ input[type=range]::-moz-range-track {
     border: 0.2px solid #010101;
 }
 input[type=range]:focus::-moz-range-track{
-    background: lightseagreen;
+    background:  #3f99c5;
 }
 
 input[type=range]::-ms-track {
@@ -91,22 +91,22 @@ input[type=range]::-ms-track {
 }
 
 input[type=range]::-ms-fill-lower {
-    background: lightseagreen;
+    background: #203837;
     border: 0.2px solid #010101;
     border-radius: 2.6px;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 input[type=range]:focus::-ms-fill-lower {
-    background: var( --focus-background-color );
+    background: #203837;
 }
 input[type=range]::-ms-fill-upper {
-    background:var( --focus-background-color );
+    background: #203837;
     border: 0.2px solid #010101;
     border-radius: 2.6px;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 input[type=range]:focus::-ms-fill-upper {
-    background: var( --focus-background-color );
+    background: #203837;
 }
 
 input[type=color]{
@@ -193,7 +193,7 @@ input[type="checkbox"] + label:before {
     border-radius: 0.2em;
     position: absolute;
     left: 0;
-    top: -1.5px;
+    top: 1.5px;
     -webkit-transition: all 0.2s, background 0.2s ease-in-out;
     transition: all 0.2s, background 0.2s ease-in-out;
     background: #f3f3f3;
@@ -212,6 +212,27 @@ input[type="checkbox"]:checked + label:before {
 input[type="checkbox"]:checked + label {
     color: lightseagreen;
 }
+
+
+input[type='radio']{
+    display: none;
+}
+input[type='radio'] + label{
+    border: 1px solid;
+    padding: 1rem;
+    margin: 0.25rem;
+    border-radius: 8px;
+    text-align: center;
+}
+input[type='radio']:checked + label{
+    background: lightseagreen;
+    color: white;
+}
+input[type='radio']:hover + label:hover{
+    background: lightseagreen;
+    color: white;
+}
+
 /*input:-webkit-autofill,*/
 /*input:-webkit-autofill:hover,*/
 /*input:-webkit-autofill:focus,*/

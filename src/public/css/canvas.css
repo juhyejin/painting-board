@@ -2,63 +2,112 @@ canvas{
     border: 1px black solid;
     background: white;
 }
-
-
+.canvas-zone{
+    align-self: center;
+}
 #randomBrushColor{
     position: relative;
     bottom: 0.0625rem;
 }
-#colorPalette{
+#color-palette{
     display: flex;
-    margin-bottom: 0.0625rem;
+    justify-content: start;
+    margin-bottom: 20px;
 }
 .colorStack{
     content: ' ';
     width : 1.25rem;
     height : 1.25rem;
-    margin : 1.25rem;
+    margin : 0.25rem;
     border-radius : 0.5rem;
 }
 
 
-/*#chattingRoomForm label{*/
-/*    margin-left: 0.625rem;*/
-/*    font-size: 0.7rem;*/
-/*}*/
-
 .brushTool{
-    padding-right: 1.25rem;
+    padding-left:2rem
+}
+.brushTool h4{
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.brush-zone{
+    display: flex;
+    flex-wrap: wrap;
+}
+.brush-color-zone{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.brush-color-zone label{
+    flex: 0;
 }
 .canvasSection{
+    width: fit-content;
     display: flex;
     background: white;
-    padding:0.625rem;
-    margin: 1.25rem;
+    padding: 2rem;
+    margin: auto;
     border: 2px double black;
     border-radius: 0.625rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .canvasSection ul{
-    height: 25rem;
+    height: 10rem;
     overflow-y: scroll;
     border: 1px solid;
     padding-left: 0.625rem;
+    margin: 1rem 0;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 14px;
 }
 .canvasSection ul li {
     list-style: none;
 }
 
-/*a{*/
-/*    width: 50px;*/
-/*    height: 100px;*/
-/*    padding: 5px;*/
-/*    margin: 5px;*/
-/*    border-radius: 8px;*/
-/*    border:1px solid;*/
-/*    text-decoration: none;*/
-/*    color: black;*/
-/*}*/
-/*a:active{*/
-/*    background:  #b8cfff;*/
-/*}*/
+a{
+    display: block;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 8px;
+    border:1px solid;
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    background: lightseagreen;
+    color: white;
+}
+
+
+.my-msg{
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 5px;
+    align-self: end;
+    background: antiquewhite;
+    border-radius: 30px;
+    word-break: break-all;
+    max-width: 200px;
+}
+.other-msg{
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 5px;
+    align-self: start;
+    background: #7dd1b8;
+    border-radius: 30px;
+    word-break: break-all;
+    max-width: 200px;
+}
+.system-msg{
+    width: fit-content;
+    margin: 5px auto;
+    padding: 5px 20px;
+    border-radius: 50px;
+    background: lightgray;
+}

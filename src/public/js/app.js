@@ -1,36 +1,37 @@
-const canvasSection = document.querySelector('#canvasSection')
+const canvasSection = document.querySelector('#canvas-section')
 const connectionSection = document.querySelector('#connection-section')
 
-const userInfoForm = document.querySelector('#userInfo')
-const chattingRoomForm = document.querySelector('#chattingRoomForm')
+const userInfoForm = document.querySelector('#user-info')
+const chattingRoomForm = document.querySelector('#chatting-room-form')
 const messageForm = document.querySelector('#message')
 const welcome = document.querySelector('#welcome');
-const checkboxForSaveNickName =  userInfoForm.querySelector('input[type="checkbox"]');
+const userInfoContainer = document.querySelector('#user-info-container')
+const checkboxForSaveNickName =  document.querySelector('input[type="checkbox"]');
 const socket = io();
 
 const NICK_NAME = 'nickName'
 let roomName;
 
 function nicknameChange(){
-    welcome.innerHTML = '';
-    userInfoForm.hidden = false;
+    welcome.innerHTML = '닉네임 : ';
+    welcome.classList.toggle('hidden')
+    userInfoContainer.hidden = false;
     checkboxForSaveNickName.checked = false;
     localStorage.clear();
 }
 
 function welcomeUser(Nickname){
-
-    const h2ForWelcome = document.createElement('b');
-    h2ForWelcome.innerText = `${Nickname}`;
+    const nickName = document.createElement('b')
+    nickName.innerText = `${Nickname}`;
     const btn = document.createElement('button');
     btn.type='button';
     btn.innerText = '변경';
     btn.addEventListener('click', nicknameChange);
-    welcome.classList.remove('hidden');
-    welcome.appendChild(h2ForWelcome);
+    welcome.classList.toggle('hidden')
+    welcome.appendChild(nickName)
     welcome.appendChild(btn);
     socket.emit(NICK_NAME, Nickname);
-    userInfoForm.hidden = true;
+    userInfoContainer.hidden = true;
 }
 
 function submitNickName(event){
@@ -49,10 +50,11 @@ function showRoom(){
     connectionSection.classList.add('hidden')
     canvasSection.classList.add('canvasSection')
     const roomNameTitle = document.createElement('h3');
+    roomNameTitle.classList.add('title-style')
     roomNameTitle.innerText = `방이름 : ${roomName}`;
     const body = document.querySelector('body')
+    body.style.background = '#c5d9e1'
     body.prepend(roomNameTitle)
-
 }
 
 function enterRoom(event){
@@ -64,9 +66,10 @@ function enterRoom(event){
     inputForRoomName.value = "";
 }
 
-function addMessage(msg){
+function addMessage(msg, userType){
     const ul = canvasSection.querySelector('ul');
     const li = document.createElement('li');
+    li.classList.add(userType)
     li.innerText = msg;
     ul.appendChild(li);
     ul.scroll(0, ul.scrollHeight)
@@ -76,7 +79,7 @@ function sendMessage(event){
     const inputForMessage = messageForm.querySelector('input');
     const value = inputForMessage.value
     socket.emit("new_message", value, roomName, () => {
-        addMessage(`You: ${value}`);
+        addMessage(`${value}`, 'my-msg');
     });
     inputForMessage.value = "";
 }
@@ -85,11 +88,11 @@ if(localStorage.getItem(NICK_NAME)){
     welcomeUser(localStorage.getItem(NICK_NAME))
 }
 socket.on("welcome", (user) => {
-    addMessage(`${user} 입장했습니다!`);
+    addMessage(`${user} 입장했습니다!`,'system-msg');
 });
 
 socket.on("bye", (left) => {
-    addMessage(`${left} 방을 떠났습니다.`);
+    addMessage(`${left} 방을 떠났습니다.`,'system-msg');
 })
 
 socket.on("new_message", addMessage);
@@ -109,162 +112,13 @@ socket.on('room_change', (rooms) => {
 socket.on('otherDraw',(paintingData) => {
     draw(paintingData)
 })
-
+socket.on('other-board-reset',(msg)=>{
+    alert(msg)
+    reset()
+})
 userInfoForm.addEventListener('submit', submitNickName)
 chattingRoomForm.addEventListener('submit',enterRoom)
 messageForm.addEventListener('submit', sendMessage)
-
-const canvas = document.getElementById('canvas')
-const brush = canvas.getContext("2d");
-//color
-const colorInput = document.getElementById('colorPicker')
-const colorPaletteForm = document.getElementById('colorPalette')
-//brush-size
-const brushSizeInput = document.querySelector('#brushSizeSlider')
-
-//brush
-const brushTypeDiv = document.querySelector('div #brushTypeSection')
-const lineBrush = brushTypeDiv.querySelector('#lineBrush')
-const circleBrush = brushTypeDiv.querySelector('#circleBrush')
-const squareBrush = brushTypeDiv.querySelector('#squareBrush')
-const eraserBrush = brushTypeDiv.querySelector('#eraserBrush')
-const paintBrush = brushTypeDiv.querySelector('#paintBrush')
-const boardReset = brushTypeDiv.querySelector('#boardReset')
-const randomBrushColor = document.querySelector('#randomBrushColor')
-
-//download
-const download = document.querySelector('a')
-
-let brushType = 'line'
-let isDraw = false
-let colorPalette = []
-
-let paintingData = {
-    mousePointX : 0,
-    mousePointY : 0,
-    BRUSH_COLOR: colorInput.value,
-    brushSize: brushSizeInput.value,
-    isDraw: false,
-    brushTypeTest: 'line',
-    movementX : 0,
-    movementY: 0
-}
-
-function draw(paintingData) {
-    let mousePointX = paintingData.mousePointX
-    let mousePointY = paintingData.mousePointY
-    let BRUSH_COLOR = paintingData.BRUSH_COLOR
-    let brushSize = paintingData.brushSize
-    let movementX = paintingData.movementX
-    let movementY = paintingData.movementY
-    if (paintingData.isDraw) {
-        console.log('그려짐?')
-        brush.beginPath();
-        brush.strokeStyle = BRUSH_COLOR;
-        brush.fillStyle = BRUSH_COLOR;
-        brush.lineWidth = brushSize;
-    switch (paintingData.brushTypeTest) {
-            case "circle" :
-                brush.arc(mousePointX, mousePointY, brushSize / 2, 0, Math.PI * 2);
-                brush.closePath();
-                brush.fill();
-                break;
-            case "square" :
-                brush.fillRect(mousePointX - brushSize / 2, mousePointY - brushSize / 2, brushSize, brushSize);
-                break;
-            case "eraser" :
-                brush.clearRect(mousePointX - brushSize/2,mousePointY - brushSize/2, brushSize, brushSize);
-                break;
-            case "paint":
-                brush.fillRect(0,0, canvas.width, canvas.height);
-                break;
-            case "reset":
-                brush.clearRect(0,0, canvas.width, canvas.height)
-                break;
-            default :
-                brush.moveTo(mousePointX + movementX, mousePointY + movementY);
-                brush.lineTo(mousePointX, mousePointY);
-                brush.stroke();
-        }
-    }
-}
-
-function stackColorClick(event){
-    let rgb = event.target.style.color
-    rgb = rgb.split(' ').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,'0')).join( "" );
-    colorInput.value = "#" + rgb;
-}
-
-function colorStack(){
-    colorPaletteForm.innerHTML = ''
-    colorPalette.push(colorInput.value)
-    colorPalette = colorPalette.slice(-5)
-    for(let i = 0; i < colorPalette.length; i++){
-        let stackColor = document.createElement('div')
-        stackColor.classList.add('colorStack')
-        stackColor.style.color = colorPalette[i]
-        stackColor.style.background = colorPalette[i]
-        stackColor.addEventListener('click', stackColorClick)
-        colorPaletteForm.append(stackColor)
-    }
-}
-
-function brushSizeChange(event){
-    let brushSizeInputValue =  event.target.value
-    const brushSizeLabel = document.querySelector('#brushSizeSliderValue')
-    brushSizeLabel.innerText = brushSizeInputValue
-}
-
-function randomColor(){
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    let rgb = `${r},${g},${b}`
-    const randomNumber = Math.floor(Math.random() * 0xf).toString(16)
-    rgb = rgb.split(',').map((x) => parseInt(x.replace(/[^0-9]/g,''),10).toString(16).padStart(2,randomNumber)).join('')
-    console.log(rgb)
-    colorInput.value = "#" + rgb;
-    colorStack()
-}
-function mousePoint(event){
-    paintingData.mousePointX = event.offsetX
-    paintingData.mousePointY = event.offsetY
-    paintingData.movementX  = event.movementX
-    paintingData.movementY = event.movementY
-}
-
-canvas.addEventListener('mousedown', (event) => {
-    paintingData.isDraw = true
-    paintingData.BRUSH_COLOR = colorInput.value
-    paintingData.brushSize =  brushSizeInput.value
-    mousePoint(event)
-    draw(paintingData)
-})
-
-
-canvas.addEventListener('mouseup', () => paintingData.isDraw = false)
-canvas.addEventListener('mousemove', (event)=> {
-    if(paintingData.isDraw){
-        mousePoint(event)
-        draw(paintingData)
-        socket.emit('draw', roomName, paintingData)
-    }
-})
-
-function brushTypeChange(event){
-    console.log(event)
-}
-
-lineBrush.addEventListener('click', () => paintingData.brushTypeTest = "line")
-circleBrush.addEventListener('click', () => paintingData.brushTypeTest = "circle")
-squareBrush.addEventListener('click',() => paintingData.brushTypeTest = "square")
-eraserBrush.addEventListener('click', () => paintingData.brushTypeTest = "eraser")
-paintBrush.addEventListener('click',() => paintingData.brushTypeTest = "paint")
-boardReset.addEventListener('click', () => paintingData.brushTypeTest = "reset")
-brushSizeInput.addEventListener('input', brushSizeChange )
-randomBrushColor.addEventListener('click',randomColor)
-colorInput.addEventListener('change',colorStack)
-download.addEventListener('click', event => event.target.href = canvas.toDataURL());
 
 
 

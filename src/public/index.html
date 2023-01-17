@@ -18,16 +18,18 @@
             <h3 class="main-title title-style"><strong>함께그리</strong>에 오신걸 환영합니다</h3>
             <h3 class="mobile-main-title title-style"><strong>함께그리</strong>에 <br>오신걸 환영합니다</h3>
             <div class="main-content">
-                <form id="userInfo">
-                    <label>
-                        <input type="text" placeholder="닉네임" id="nickname" required>
+                <div id="user-info-container">
+                    <form id="user-info">
+                        <label>
+                            <input type="text" placeholder="닉네임" id="nickname" required>
+                        </label>
+                        <button type="submit" >완료</button>
+                    </form>
+                    <input type="checkbox" id="save-nickname-check">
+                    <label for="save-nickname-check">
+                        다음에도 입력한 닉네임을 사용하시겠습니까? <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
                     </label>
-                    <button type="submit" >완료</button>
-                </form>
-                <input type="checkbox" id="save-nickname-check">
-                <label for="save-nickname-check">
-                    다음에도 입력한 닉네임을 사용하시겠습니까? <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
-                </label>
+                </div>
                 <div id="welcome" class="hidden font-size-bold">
                     닉네임 :
                 </div>
@@ -44,78 +46,64 @@
                 <ul class="room-list"></ul>
             </div>
         </div>
-        <div id='canvasSection' class="hidden">
-            <div>
+        <div id='canvas-section' class="hidden">
+            <div class="canvas-zone">
                 <canvas id="canvas" width="500" height="500"></canvas>
             </div>
             <div class="brushTool">
                 <article>
                     <section>
                         <h4>브러쉬 크기</h4>
-                        <input type="range" min="1" max="100" value="10" id="brushSizeSlider" >
-                        <label for="brushSizeSlider" id="brushSizeSliderValue">10</label>
+                        <input type="range" min="1" max="100" value="10" id="brush-size-slider" >
+                        <label for="brush-size-slider" id="brush-size-slider-value">10</label>
                     </section>
                 </article>
-                <div id="brushTypeSection">
+                <div id="brush-type-section">
                     <h4>브러쉬 모양</h4>
-                    <label>
-                        <input type="radio" name="brushType" value="/">
-                        /
-                    </label>
-                    <label>
-                        <input type="radio" name="brushType" value="O">
-                        O
-                    </label>
-                    <label>
-                        <input type="radio" name="brushType" value="ㅁ">
-                        ㅁ
-                    </label>
-                    <label>
-                        <input type="radio" name="brushType" value="지우개">
-                        지우개
-                    </label>
-                    <label>
-                        <input type="radio" name="brushType" value="페인팅">
-                        페인팅
-                    </label>
-                    <label>
-                        <input type="radio" name="brushType" value="초기화">
-                        초기화
-                    </label>
-                    <button type="button" name="brushType" class="brushBtn" id="lineBrush"> / </button>
-                    <button type="button" name="brushType" class="brushBtn" id="circleBrush"> O </button>
-                    <button type="button" name="brushType" class="brushBtn" id="squareBrush">☐</button>
-                    <button type="button" name="brushType" class="brushBtn" id="paintBrush">페인팅</button>
-                    <button type="button" name="brushType"  class="brushBtn" id="eraserBrush">지우개</button>
-                    <button type="button" name="reset" class="brushBtn" id="boardReset">초기화</button>
+                    <div class="brush-zone">
+                        <input type="radio" name="brushType"  id="line-brush" value="/">
+                        <label for="line-brush"> / </label>
+                        <input type="radio" name="brushType" id="circle-brush" value="O" checked>
+                        <label for="circle-brush"> O </label>
+                        <input type="radio" name="brushType" id="square-brush" value="ㅁ">
+                        <label for="square-brush"> ㅁ </label>
+                        <input type="radio" name="brushType" id="eraser-brush" value="지우개">
+                        <label for="eraser-brush">지우개</label>
+                        <input type="radio" name="brushType"  id="paint-brush" value="페인팅">
+                        <label for="paint-brush"> 페인팅 </label>
+                        <input type="radio" name="brushType" id="board-reset" value="초기화">
+                        <label for="board-reset"> 초기화</label>
+                    </div>
+
                 </div>
-                <div>
+                <div >
                     <h4>브러쉬 색상</h4>
-                    <div>
+                    <div class="brush-color-zone">
                         <label>
-                            <input type="color" id="colorPicker">
+                            <input type="color" id="color-picker">
                         </label>
-                        <button id="randomBrushColor" type="button" name="brushColor">무작위 색상</button>
+                        <button id="random-brush-color" type="button" name="brushColor">무작위 색상</button>
                     </div>
                     <div>
                         <h4>최근 사용 색상</h4>
-                        <div id="colorPalette"></div>
+                        <div id="color-palette"></div>
                     </div>
                 </div>
                 <a href="" download="myPainting.png" id="download">다운로드</a>
+                <div id="chatting">
+                    <ul></ul>
+                    <form id ='message'>
+                        <label>
+                            <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
+                        </label>
+                        <button type="submit">보내기</button>
+                    </form>
+                </div>
             </div>
-            <div id="chatting">
-                <ul></ul>
-                <form id ='message'>
-                    <label>
-                        <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
-                    </label>
-                    <button type="submit">보내기</button>
-                </form>
-            </div>
+
         </div>
         <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
-<!--        <script type="text/javascript" src="/js/canvas.js"></script>-->
+        <script type="text/javascript" src="/js/canvas.js"></script>
     </body>
 </html>
