@@ -22,31 +22,31 @@ input[type=range]::-ms-track {
 /*input range thumb custom*/
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: 1px solid var(--border-color);
-    height: 16px;
-    width: 16px;
-    border-radius: 3px;
+    border: 1px solid lightseagreen;
+    height: 1rem;
+    width:  1rem;
+    border-radius: 0.25rem;
     background: #ffffff;
     cursor: pointer;
-    margin-top: -3.5px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+    margin-top: 0.25rem; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d; /* Add cool effects to your sliders! */
 }
 /*firefox*/
 input[type=range]::-moz-range-thumb {
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid var(--border-color);
-    height: 16px;
-    width: 16px;
-    border-radius: 3px;
+    border: 1px solid lightseagreen;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
     background: #ffffff;
     cursor: pointer;
 }
 input[type=range]::-ms-thumb {
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid var(--border-color);
-    height: 16px;
-    width: 16px;
-    border-radius: 3px;
+    border: 1px solid lightseagreen;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
     background: #ffffff;
     cursor: pointer;
 }
@@ -58,13 +58,13 @@ input[type=range]::-webkit-slider-runnable-track {
     height: 10px;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: var(--border-color);
+    background: lightseagreen;
     border-radius: 1.3px;
     border: 0.2px solid #010101;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: var( --focus-background-color );
+    background: lightseagreen;
 }
 
 input[type=range]::-moz-range-track {
@@ -72,12 +72,12 @@ input[type=range]::-moz-range-track {
     height: 10px;
     cursor: pointer;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: var(--background-color);
+    background: lightseagreen;
     border-radius: 1.3px;
     border: 0.2px solid #010101;
 }
 input[type=range]:focus::-moz-range-track{
-    background: var( --focus-background-color );
+    background: lightseagreen;
 }
 
 input[type=range]::-ms-track {
@@ -86,12 +86,12 @@ input[type=range]::-ms-track {
     cursor: pointer;
     background: transparent;
     border-color: transparent;
-    border-width: 16px 0;
+    border-width: 1rem 0;
     color: transparent;
 }
 
 input[type=range]::-ms-fill-lower {
-    background: var( --focus-background-color );
+    background: lightseagreen;
     border: 0.2px solid #010101;
     border-radius: 2.6px;
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
@@ -128,36 +128,30 @@ input[type=color]::-moz-color-swatch {
     border: none;
 }
 
+
 input[type='text']{
-    width: 500px;
-    height: 32px;
-    font-size: 15px;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: 2rem;
     border: 0;
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
     background-color: #d3d3d3;
+    margin-right: 10px;
 }
 input[type='text']:focus{
-    width: 500px;
-    height: 32px;
-    font-size: 15px;
+    height: 1.875rem;
     border: 1px solid lightseagreen;
-    border-radius: 15px;
-    outline: none;
-    padding-left: 10px;
-    background-color: white;
+    background: white;
 }
 input[type='text']:valid{
-    width: 500px;
-    height: 32px;
-    font-size: 15px;
+    height: 1.875rem;
     border: 1px solid lightseagreen;
-    border-radius: 15px;
-    outline: none;
-    padding-left: 10px;
     background: white !important;
 }
+
+
 
 /*input[type='checkbox']{*/
 /*    display: none;*/
@@ -199,7 +193,7 @@ input[type="checkbox"] + label:before {
     border-radius: 0.2em;
     position: absolute;
     left: 0;
-    top: 1.5px;
+    top: -1.5px;
     -webkit-transition: all 0.2s, background 0.2s ease-in-out;
     transition: all 0.2s, background 0.2s ease-in-out;
     background: #f3f3f3;

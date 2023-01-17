@@ -23,22 +23,23 @@
                         <input type="text" placeholder="닉네임" id="nickname" required>
                     </label>
                     <button type="submit" >완료</button>
-                    <br>
-                        <input type="checkbox" id="saveNicknameCheck">
-                    <label for="saveNicknameCheck">
-                        다음에도 입력한 닉네임을 사용하시겠습니까? <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
-                    </label>
                 </form>
+                <input type="checkbox" id="save-nickname-check">
+                <label for="save-nickname-check">
+                    다음에도 입력한 닉네임을 사용하시겠습니까? <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
+                </label>
                 <div id="welcome" class="hidden font-size-bold">
                     닉네임 :
                 </div>
-                <form id="chattingRoomForm">
-                    <input type="text" placeholder="채팅방" id="room" required autocomplete="off">
-                    <button type="submit" >찾기</button> <br>
-                    <label for="room">
-                        방이 존재하지 않으면 방을 생성합니다.
+                <form id="chatting-room-form">
+                    <label>
+                        <input type="text" placeholder="채팅방" id="room" required autocomplete="off">
                     </label>
+                    <button type="submit" >찾기</button> <br>
                 </form>
+                <div class="chatting-room-form_label">
+                    방이 존재하지 않으면 방을 생성합니다.
+                </div>
                 <h3 class="room-list-title font-size-bold">방 목록</h3>
                 <ul class="room-list"></ul>
             </div>
@@ -115,6 +116,6 @@
         </div>
         <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
-        <script type="text/javascript" src="/js/canvas.js"></script>
+<!--        <script type="text/javascript" src="/js/canvas.js"></script>-->
     </body>
 </html>

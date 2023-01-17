@@ -3,9 +3,7 @@ canvas{
     background: white;
 }
 
-#chattingRoomForm{
-    margin: 1rem 0;
-}
+
 #randomBrushColor{
     position: relative;
     bottom: 0.0625rem;
@@ -23,10 +21,10 @@ canvas{
 }
 
 
-#chattingRoomForm label{
-    margin-left: 0.625rem;
-    font-size: 0.7rem;
-}
+/*#chattingRoomForm label{*/
+/*    margin-left: 0.625rem;*/
+/*    font-size: 0.7rem;*/
+/*}*/
 
 .brushTool{
     padding-right: 1.25rem;

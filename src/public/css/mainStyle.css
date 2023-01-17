@@ -61,7 +61,7 @@ button:hover{
     background: white;
     border-radius: 0.625rem;
     padding: 1.25rem;
-    width: fit-content;
+    width: 50%;
     margin: auto;
     box-shadow: 0 0 0.5rem 0 #7b7b7b;
 }
@@ -76,7 +76,17 @@ button:hover{
     list-style-type: circle;
 }
 /*connection Section end*/
+form{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
 
+label{
+    flex-grow: 1;
+    align-self: center;
+}
 #welcome{
     display: flex;
     align-items: center;
@@ -90,6 +100,13 @@ button:hover{
 #welcome b{
     padding:0 0.625rem;
     color: lightseagreen;
+}
+#chatting-room-form{
+    margin-top: 1rem;
+}
+.chatting-room-form_label{
+    font-size: 0.7rem;
+    margin-left: 0.5rem
 }
 .hidden{
     display: none !important;
