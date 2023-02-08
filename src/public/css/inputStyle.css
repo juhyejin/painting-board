@@ -160,7 +160,11 @@ input[type='text']:valid{
 /*    font-size: 0.8rem;*/
 /*}*/
 input[type="checkbox"] {
-    display: none;
+    display: block;
+    position: absolute;
+    left: 5px;
+    bottom: -7.23px;
+    /*opacity: 0.001;*/
 }
 input[type="checkbox"] + label {
     width: fit-content;
@@ -214,24 +218,31 @@ input[type="checkbox"]:checked + label {
 }
 
 
-input[type='radio']{
-    display: none;
+#brush-zone input, #brush-zone label{
+    display: block;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 }
-input[type='radio'] + label{
-    border: 1px solid;
-    padding: 1rem;
-    margin: 0.25rem;
-    border-radius: 8px;
-    text-align: center;
+#brush-zone input[type='radio']{
+    opacity: 0.011;
+    z-index: 100;
+}
+#brush-zone label{
+    cursor: pointer;
+    z-index: 90;
+    line-height: 2.4em;
 }
 input[type='radio']:checked + label{
     background: lightseagreen;
     color: white;
 }
-input[type='radio']:hover + label:hover{
-    background: lightseagreen;
-    color: white;
-}
+/*input[type='radio']:hover + label:hover{*/
+/*    background: lightseagreen;*/
+/*    color: white;*/
+/*}*/
 
 /*input:-webkit-autofill,*/
 /*input:-webkit-autofill:hover,*/

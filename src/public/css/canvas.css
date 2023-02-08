@@ -54,7 +54,7 @@ canvas{
     justify-content: space-evenly;
 }
 
-.canvasSection ul{
+.canvasSection .chatting-main{
     height: 10rem;
     overflow-y: scroll;
     border: 1px solid;
@@ -65,7 +65,7 @@ canvas{
     width: 100%;
     font-size: 14px;
 }
-.canvasSection ul li {
+.canvasSection .chatting-main li {
     list-style: none;
 }
 

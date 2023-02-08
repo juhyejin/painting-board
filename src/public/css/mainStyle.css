@@ -75,6 +75,9 @@ button:hover{
 #connection-section > .main-content li{
     list-style-type: circle;
 }
+#user-info-container{
+    position: relative;
+}
 /*connection Section end*/
 form{
     display: flex;
@@ -118,7 +121,32 @@ label{
 .room-list li{
     padding: 0.5rem 0;
 }
+#brush-zone{
+    list-style-type: none;
+    margin: 25px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
 
+}
+#brush-zone li{
+    position: relative;
+    margin: 5px 5px 5px 0;
+    width: 60px;
+    height: 40px;
+    border: 1px black solid;
+    border-radius: 3px;
+    text-align-last:center;
+}
+#brush-zone li:hover{
+    background: lightseagreen;
+    color: white;
+}
+#brush-zone li:focus-within{
+    border: #005cd7 2px solid;
+    width: 58px;
+    height: 38px;
+}
 @media (max-width: 850px) {
     html{
         font-size: 14px;

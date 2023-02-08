@@ -26,7 +26,7 @@
                         <button type="submit" >완료</button>
                     </form>
                     <input type="checkbox" id="save-nickname-check">
-                    <label for="save-nickname-check">
+                    <label for="save-nickname-check" >
                         다음에도 입력한 닉네임을 사용하시겠습니까? <b>닉네임 없이도 방에 입장할 수 있습니다.</b>
                     </label>
                 </div>
@@ -58,25 +58,36 @@
                         <label for="brush-size-slider" id="brush-size-slider-value">10</label>
                     </section>
                 </article>
-                <div id="brush-type-section">
+                <div id="brush-type-section" >
                     <h4>브러쉬 모양</h4>
-                    <div class="brush-zone">
-                        <input type="radio" name="brushType"  id="line-brush" value="/">
-                        <label for="line-brush"> / </label>
-                        <input type="radio" name="brushType" id="circle-brush" value="O" checked>
-                        <label for="circle-brush"> O </label>
-                        <input type="radio" name="brushType" id="square-brush" value="ㅁ">
-                        <label for="square-brush"> ㅁ </label>
-                        <input type="radio" name="brushType" id="eraser-brush" value="지우개">
-                        <label for="eraser-brush">지우개</label>
-                        <input type="radio" name="brushType"  id="paint-brush" value="페인팅">
-                        <label for="paint-brush"> 페인팅 </label>
-                        <input type="radio" name="brushType" id="board-reset" value="초기화">
-                        <label for="board-reset"> 초기화</label>
-                    </div>
-
+                    <ul id="brush-zone">
+                        <li>
+                            <input type="radio" name="brushType"  id="line-brush" value="/">
+                            <label for="line-brush"> / </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="brushType" id="circle-brush" value="O" checked>
+                            <label for="circle-brush"> O </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="brushType" id="square-brush" value="ㅁ">
+                            <label for="square-brush"> ㅁ </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="brushType" id="eraser-brush" value="지우개">
+                            <label for="eraser-brush">지우개</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="brushType"  id="paint-brush" value="페인팅">
+                            <label for="paint-brush"> 페인팅 </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="brushType" id="board-reset" value="초기화">
+                            <label for="board-reset"> 초기화</label>
+                        </li>
+                    </ul>
                 </div>
-                <div >
+                <div>
                     <h4>브러쉬 색상</h4>
                     <div class="brush-color-zone">
                         <label>
@@ -91,7 +102,7 @@
                 </div>
                 <a href="" download="myPainting.png" id="download">다운로드</a>
                 <div id="chatting">
-                    <ul></ul>
+                    <ul class="chatting-main"></ul>
                     <form id ='message'>
                         <label>
                             <input type="text" required placeholder="보내실 메세지를 입력해주세요.">
